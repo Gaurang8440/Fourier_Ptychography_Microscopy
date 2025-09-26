@@ -27,3 +27,7 @@ $$I_{m,n} = | F^{-1} \lbrace F \lbrace O(x,y).e^{(ik_{x,m,n} x,ik_{y,m,n} y)} \r
 
 $$I_{m,n} = | F^{-1} \lbrace \tilde{O}(k_x - k_{x,m,n},k_y - k_{y,m,n}).P(k_x,k_y) \rbrace |^2$$
 
+FPM attempts to eliminate or minimize the variations in amplitude between simulation patterns and captured images iteratively: Non-convex Optimization https://rumn.medium.com/convex-vs-non-convex-functions-why-it-matters-in-optimization-for-machine-learning-39cd9427dfcc
+
+$$\min_{O(k_x,k_y)} \epsilon = \min_{O(k_x,k_y)} \sum_{m,n} \sum_{x,y} |\sqrt{I_{m,n}(x,y)} - | F^{-1} \lbrace \tilde{O}(k_x - k_{x,m,n},k_y - k_{y,m,n}).P(k_x,k_y) \rbrace ||^2$$
+
