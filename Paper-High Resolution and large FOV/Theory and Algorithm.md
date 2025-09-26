@@ -31,3 +31,7 @@ FPM attempts to eliminate or minimize the variations in amplitude between simula
 
 $$\min_{O(k_x,k_y)} \epsilon = \min_{O(k_x,k_y)} \sum_{m,n} \sum_{x,y} |\sqrt{I_{m,n}(x,y)} - | F^{-1} \lbrace \tilde{O}(k_x - k_{x,m,n},k_y - k_{y,m,n}).P(k_x,k_y) \rbrace ||^2$$
 
+[Paper Exchange/Appendix - Ptychography.pdf ](https://github.com/BioPhotonicaLab-IITD/Fourier_ptychography/blob/ab9ef55759e1c3c872dba262cf95e549f1996407/Paper%20Exchange/Appendix%20-%20Ptychography.pdf)
+
+[Paper Exchange/PtychographyTutorial_Revised_SanderKonijnenberg.pdf](https://github.com/BioPhotonicaLab-IITD/Fourier_ptychography/blob/ab9ef55759e1c3c872dba262cf95e549f1996407/Paper%20Exchange/PtychographyTutorial_Revised_SanderKonijnenberg.pdf)
+
