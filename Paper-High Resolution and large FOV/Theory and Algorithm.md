@@ -59,4 +59,18 @@ $$\tilde{O}(k_x,k_y) = F \lbrace \phi^u_{m,n}(x,y) \rbrace.P(k_x,k_y) + \phi^e_{
 
 Single iteration is completed when all the captured images are used to update corresponding parts of the sample spectrum in Fourier domain. $i$ iterations are reapeated until the solution converges in the limits of an error metric defined by
 
-$$\epsilon_i = \frac {\sum_{x,y,m,n}(\sqrt{I^c_{m,n}(x,y)}-|\phi^e_{m,n}(x,y)|)^2}{\sum_{x,y,m,n}I^c_{m,n}(x,y)}$$
+$$\epsilon_i = \frac {\sum_{x,y,m,n}(\sqrt{I^c_{m,n}(x,y)}-|\phi^e_{i,m,n}(x,y)|)^2}{\sum_{x,y,m,n}I^c_{m,n}(x,y)}$$
+
+**Updation Algorithm**
+
+The modification in the LR image does not update the pupil or object function in the beginning. For that, popular algorithm EPRY-FPM (similar to PIE algorithm in Ptychography) can be used which updates the values of object and pupil function by 
+
+$$\tilde{O^,_i}(k_x-k_{x,m,n},k_y-k_{x,m,n})=O_i(k_x-k_{x,m,n},k_y-k_{x,m,n})+\alpha \frac{P^*_i(k_x,k_y)}{|P_i(k_x,k_y)|^2_{max}}\Delta\phi_{i,m,n}$$
+
+$$P^,_i(k_x,k_y) = P_i(k_x,k_y) + \beta \frac{O^*_i(k_x-k_{x,m,n},k_y-k_{x,m,n})}{|O_i(k_x-k_{x,m,n},k_y-k_{x,m,n})|^2_{max}}\Delta\phi_{i,m,n}$$
+
+Here, $\alpha$ and $\beta$ are the step size of the update. $\Delta\phi_{i,m,n}$ is the auxilliary funtion for updating process:
+
+$$\Delta\phi_{i,m,n} = F \lbrace \phi^u_{i,m,n}(x,y) \rbrace - \phi^e_{i,m,n}(k_x,k_y)$$
+
+These functions can be updated by another approach called sequential Gaussian-Newton algorithm which is a second order approach.
