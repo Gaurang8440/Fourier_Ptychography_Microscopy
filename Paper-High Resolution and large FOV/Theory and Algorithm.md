@@ -35,3 +35,28 @@ $$\min_{O(k_x,k_y)} \epsilon = \min_{O(k_x,k_y)} \sum_{m,n} \sum_{x,y} |\sqrt{I_
 
 [Paper Exchange/PtychographyTutorial_Revised_SanderKonijnenberg.pdf](https://github.com/BioPhotonicaLab-IITD/Fourier_ptychography/blob/ab9ef55759e1c3c872dba262cf95e549f1996407/Paper%20Exchange/PtychographyTutorial_Revised_SanderKonijnenberg.pdf)
 
+**Algorithm**
+
+1. An initial HR complex amplitude guess of the pupil function and sample spectrum, $P_o(k_x,k_y) and \tilde{O_o}(k_x,k_y)$ respectively. Initial guess of pupil function is a circular shape due to objective design and zero phase (nature of CTf). Up-sampled LR image is taken as first guess for sample spectrum
+
+2. The exit wave at the fourier plane can be estimated by multiplication
+
+$$\phi^e_{m,n}(k_x,k_y) = \tilde{O_o}(k_x -k_{x,m,n},k_y - k_{y,m,n}).P_o(k_x,k_y)$$
+
+  and the simulated LR image on the image plane is inverse Fourier Transform of it: 
+
+$$\phi^e_{m,n}(x,y) = F^{-1}\lbrace \phi^e_{m,n}(k_x,k_y) \rbrace$$
+
+It would have some amplitude and phase information
+
+3. The modulus of the simulated LR image is replaced by the square root of the actual measurement, and the phase remains unchanged.
+
+$$\phi^u_{m,n}(x,y) = \sqrt{I^c_{m,n}(x,y)}\frac{\phi^e_{m,n}(x,y)}{|\phi^e_{m,n}(x,y)|}$$
+
+4.The modified LR image is then used to update the corresponding spectrum region of sample estimate in the Fourier domain.
+
+$$\tilde{O}(k_x,k_y) = F \lbrace \phi^u_{m,n}(x,y) \rbrace.P(k_x,k_y) + \phi^e_{m,n}(k_x,k_y)[1-P(k_x,k_y)]$$
+
+Single iteration is completed when all the captured images are used to update corresponding parts of the sample spectrum in Fourier domain. $i$ iterations are reapeated until the solution converges in the limits of an error metric defined by
+
+$$\epsilon_i = \frac {\sum_{x,y,m,n}(\sqrt{I^c_{m,n}(x,y)}-|\phi^e_{m,n}(x,y)|)^2}{\sum_{x,y,m,n}I^c_{m,n}(x,y)}$$
