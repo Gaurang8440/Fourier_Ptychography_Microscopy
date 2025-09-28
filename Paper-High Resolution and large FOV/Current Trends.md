@@ -14,5 +14,6 @@ These methods are broadly divided into two categories:
 
 **Incremental Algorithms:**
 These are sequential algorithms which only update a small patch of the object function in each update. Gradient descent in this case uses an 'approximate gradient' computed from only a part of data.
+
 **Global Algorithms**
 They update entire object function in every iteration
